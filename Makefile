@@ -22,7 +22,7 @@ reload: ## Mise à jour du projet, rechargement des données
 	php artisan db:seed
 	php artisan optimize:clear
 	yarn
-	yarn dev
+	yarn build
 
 test: ## Lance tout les tests automatisés
 	vendor/bin/phpunit
