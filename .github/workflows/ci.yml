@@ -1,0 +1,32 @@
+name:  GlobalSearch. CI
+on: [push]
+jobs:
+  tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Installation de PHP 8.1
+        uses: shivammathur/setup-php@v2
+        with:
+            php-version: '8.1'
+            tools: composer:v2
+
+      - name: Récupération du dépot git
+        uses: actions/checkout@v2
+
+      - name: Démarrage de Mysql
+        run:  sudo /etc/init.d/mysql start
+
+      - name: Préparation du fichier .env
+        run: cp .env.example .env
+
+      - name: Installation des dépendances
+        run: make install
+
+      - name: Tests Unitaires
+        run: vendor/bin/phpunit
+
+      - name: Analyse statique PHP
+        run: vendor/bin/phpstan
+
+      - name: Correction automatique des coding standards
+        run: vendor/bin/pint
