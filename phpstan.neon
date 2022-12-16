@@ -1,0 +1,11 @@
+parameters:
+    paths:
+        - app
+
+    level: max
+
+    excludePaths:
+        - app/Nova/Resource.php
+        - app/Exceptions/Handler.php
+
+    checkMissingIterableValueType: false
