@@ -1,15 +1,19 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import SearchComponent from '@/Components/Search';
 import { Head } from '@inertiajs/inertia-react';
+import { usePage } from '@inertiajs/inertia-react';
 import Tabs from "@/Components/Tabs";
 import {fetchEndpoint} from "@/api";
 import {useEffect, useState} from "react";
 import {apiKey} from "@/helpers/constants";
 import Cards from "@/Components/Cards/Cards";
 import Loader from "@/Components/Loader";
+import EmptyConfig from "@/Components/EmptyConfig";
 
 export default function Search(props) {
     const {REPOSITORIES, ISSUES, PULL_REQUESTS, SLACK_MESSAGES} = apiKey
+
+    const user = usePage().props.auth.user;
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -37,7 +41,7 @@ export default function Search(props) {
                 const fetch = async () => {
                     try {
                         setIsLoading(true)
-                        const res = await fetchEndpoint(activeTab, data.slug)
+                        const res = await fetchEndpoint(activeTab, data.slug, user.token)
                         await setData({ ...data, results: res.data });
                         await setIsEmptyResult(() => { return false })
                     } catch (e) {
@@ -59,15 +63,19 @@ export default function Search(props) {
         >
             <Head title="Search" />
 
-            <SearchComponent data={data} setData={setData} />
-            <Tabs initialData={initialData}
-                  data={data} setData={setData}
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                  tabsConfig={TabsConfig} />
+            {user.token ?
+                <>
+                    <SearchComponent data={data} setData={setData} />
+                    <Tabs initialData={initialData}
+                          data={data} setData={setData}
+                          activeTab={activeTab}
+                          setActiveTab={setActiveTab}
+                          tabsConfig={TabsConfig} />
 
-            {isLoading ? <Loader /> : ''}
-            {!isLoading && data.slug !== "" ? <><Cards isEmptyResult={isEmptyResult} data={data} activeTab={activeTab} /></> : ''}
+                    {isLoading ? <Loader /> : ''}
+                    {!isLoading && data.slug !== "" ? <><Cards isEmptyResult={isEmptyResult} data={data} activeTab={activeTab} /></> : ''}
+                </>
+            : <EmptyConfig />}
 
         </AuthenticatedLayout>
     );
