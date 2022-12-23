@@ -1,5 +1,6 @@
 import { toDayJsDateOnFormat } from "@/helpers/date";
-import { lock, unlock } from "../../assets/index";
+import StateIconRepository from "@/Components/Icons/StateIconRepository";
+import {url} from "@/helpers/url";
 
 const Tag = (props) => {
     const { title, styles } = props;
@@ -9,17 +10,15 @@ const Tag = (props) => {
         </div>
     )
 }
-export default function RepositoryCard(props)
-{
-    const { data } = props
+
+const RenderResult = ({ data }) => {
     return (
-        <div className='mt-10'>
+        <>
             {data.results.map((item, index) => (
                 <div key={index} className="mb-6">
-                    <a href={JSON.stringify(item.html_url).replaceAll('"', '')} target="_blank" className="block w-100 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
+                    <a href={url(item.html_url)} target="_blank" className="block w-100 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                         <div className="flex flex-row items-center">
-                            {item.private ? <img src={lock} alt="lock" className="w-8 h-8 mr-3" />
-                                : <img src={unlock} alt="unlock" className="w-8 h-8 mr-3" />}
+                            <StateIconRepository state={item.private} />
                             <h5 className="text-2xl font-bold tracking-tight text-gray-900">{item.full_name}</h5>
                         </div>
                         <p className="my-2 font-normal text-gray-700">{item.description ?? 'Pas de description.'}</p>
@@ -32,6 +31,16 @@ export default function RepositoryCard(props)
                     </a>
                 </div>
             ))}
+        </>
+    )
+}
+
+export default function RepositoryCard(props)
+{
+    const { data } = props
+    return (
+        <div className='mt-10'>
+            <RenderResult data={data} />
         </div>
     )
 }
