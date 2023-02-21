@@ -4,7 +4,7 @@ import {apiKey} from "@/helpers/constants";
 const {REPOSITORIES, ISSUES, PULL_REQUESTS, SLACK_MESSAGES} = apiKey
 
 const ax = (token) => { return axios.create({
-    baseURL: 'http://toad.test/api/',
+    baseURL: 'http://global-search.test/api/octools/',
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -30,15 +30,15 @@ export const fetchEndpoint = (activeTab, query, token) => {
 }
 
 export const getRepositories = (query = "", token) => {
-    return ax(token).get(`github/search-repositories/${query}`);
+    return ax(token).get(`github/search-repositories?query=${query}`);
 }
 
 export const getIssues = (query = "", token) => {
-    return ax(token).get(`github/search-issues/${query}`);
+    return ax(token).get(`github/search-issues?query=${query}`);
 }
 
 export const getPullRequests = (query = "", token) => {
-    return ax(token).get(`github/search-pull-requests/${query}`);
+    return ax(token).get(`github/search-pull-requests?query=${query}`);
 }
 
 export const getSlackMessages = (query = "", token) => {

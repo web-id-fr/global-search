@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'octools' => [
+        'api_driver' => env('OCTOOLS_API_DRIVER', 'fake'),
+    ],
+
 ];

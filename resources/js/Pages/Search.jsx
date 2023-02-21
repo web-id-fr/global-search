@@ -19,7 +19,9 @@ export default function Search(props) {
 
     const initialData = {
         slug: "",
-        results: [],
+        results: {
+            items: [],
+        },
     }
     const [data, setData] = useState(initialData);
 
@@ -32,7 +34,6 @@ export default function Search(props) {
             {key :REPOSITORIES, value: 'Repositories'},
             {key :ISSUES, value: 'Issues'},
             {key :PULL_REQUESTS, value: 'Pull Requests'},
-            {key :SLACK_MESSAGES, value: 'Slack Messages'},
         ]
 
     useEffect(() => {
@@ -54,6 +55,7 @@ export default function Search(props) {
             return () => clearTimeout(timeoutId);
         }
     }, [data.slug, activeTab]);
+
 
     return (
         <AuthenticatedLayout

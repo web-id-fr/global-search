@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\ApiServices\Octools\FakeOctoolsApiService;
+use App\ApiServices\Octools\OctoolsApiService;
+use App\ApiServices\Octools\OctoolsApiServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind(OctoolsApiServiceInterface::class, match (config('services.octools.api_driver')) {
+            'fake' => FakeOctoolsApiService::class,
+            default => OctoolsApiService::class,
+        });
     }
 }

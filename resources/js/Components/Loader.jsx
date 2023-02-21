@@ -1,6 +1,6 @@
 const Loader = () => {
     return (
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
             <div className="flex flex-col items-center justify-center">
                 <svg aria-hidden="true" className="mr-2 w-8 h-8 text-gray-200 animate-spin fill-blue-600"
                      viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

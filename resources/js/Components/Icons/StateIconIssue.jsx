@@ -4,11 +4,11 @@ import {ReactComponent as ClosedIssue} from "../../assets/closed-issue.svg";
 const StateIconIssue = (props) => {
     const { state } = props;
     switch (state) {
-        case "open":
+        case "OPEN":
             return (
                 <OpenIssue />
             )
-        case "closed":
+        case "CLOSED":
             return (
                 <ClosedIssue />
             )
