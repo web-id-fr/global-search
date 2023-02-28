@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95677189fa1c7ce9cb4897324cf8b1fd",
+    "content-hash": "89113269214b940d11c0b605bcf1c1a9",
     "packages": [
         {
             "name": "brick/math",
@@ -2904,6 +2904,66 @@
             "time": "2022-11-05T23:03:38+00:00"
         },
         {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.14.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
+                "reference": "b477dd2f89d0751f0e51ffb3a70181f0bc7ab8df",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.28|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.7|^8.0",
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.5.24",
+                "spatie/pest-plugin-test-time": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-01-27T15:33:45+00:00"
+        },
+        {
             "name": "symfony/console",
             "version": "v6.2.1",
             "source": {
@@ -5454,6 +5514,79 @@
                 }
             ],
             "time": "2022-03-08T17:03:00+00:00"
+        },
+        {
+            "name": "web-id/octools-client",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/web-id-fr/octools-client.git",
+                "reference": "7f5a1c77ee6c7d4cc81f295248af71539e39b7dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/web-id-fr/octools-client/zipball/7f5a1c77ee6c7d4cc81f295248af71539e39b7dc",
+                "reference": "7f5a1c77ee6c7d4cc81f295248af71539e39b7dc",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.5",
+                "illuminate/contracts": "^9.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "WebId\\OctoolsClient\\OctoolsClientServiceProvider"
+                    ],
+                    "aliases": {
+                        "OctoolsClient": "WebId\\OctoolsClient\\Facades\\OctoolsClient"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WebId\\OctoolsClient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CLEMREP",
+                    "email": "clement@web-id.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Client to use Octools.io API",
+            "homepage": "https://github.com/web-id/octools-client",
+            "keywords": [
+                "laravel",
+                "octools-client",
+                "web-id"
+            ],
+            "support": {
+                "issues": "https://github.com/web-id-fr/octools-client/issues",
+                "source": "https://github.com/web-id-fr/octools-client/tree/main"
+            },
+            "time": "2023-02-16T15:28:20+00:00"
         },
         {
             "name": "webmozart/assert",

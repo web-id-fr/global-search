@@ -1,8 +1,62 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import Dif from '@/Components/Search';
+import SearchComponent from '@/Components/Search';
 import { Head } from '@inertiajs/inertia-react';
+import { usePage } from '@inertiajs/inertia-react';
+import Tabs from "@/Components/Tabs";
+import {fetchEndpoint} from "@/api";
+import {useEffect, useState} from "react";
+import {apiKey} from "@/helpers/constants";
+import Cards from "@/Components/Cards/Cards";
+import Loader from "@/Components/Loader";
+import EmptyConfig from "@/Components/EmptyConfig";
 
 export default function Search(props) {
+    const {REPOSITORIES, ISSUES, PULL_REQUESTS, SLACK_MESSAGES} = apiKey
+
+    const user = usePage().props.auth.user;
+
+    const [isLoading, setIsLoading] = useState(false)
+
+    const initialData = {
+        slug: "",
+        results: {
+            items: [],
+        },
+    }
+    const [data, setData] = useState(initialData);
+
+    const [activeTab, setActiveTab] = useState(REPOSITORIES)
+
+    const [isEmptyResult, setIsEmptyResult] = useState(false)
+
+    const TabsConfig =
+        [
+            {key :REPOSITORIES, value: 'Repositories'},
+            {key :ISSUES, value: 'Issues'},
+            {key :PULL_REQUESTS, value: 'Pull Requests'},
+        ]
+
+    useEffect(() => {
+        if (data.slug !== "") {
+            const timeoutId = setTimeout(() => {
+                const fetch = async () => {
+                    try {
+                        setIsLoading(true)
+                        const res = await fetchEndpoint(activeTab, data.slug, user.token)
+                        await setData({ ...data, results: res.data });
+                        await setIsEmptyResult(() => { return false })
+                    } catch (e) {
+                        setIsEmptyResult(true)
+                    }
+                    await setIsLoading(() => { return false })
+                };
+                return fetch();
+            }, 500);
+            return () => clearTimeout(timeoutId);
+        }
+    }, [data.slug, activeTab]);
+
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -11,7 +65,22 @@ export default function Search(props) {
         >
             <Head title="Search" />
 
-            <Dif />
+            {user.token ?
+                <>
+                    <SearchComponent data={data} setData={setData} />
+                    <Tabs initialData={initialData}
+                          data={data} setData={setData}
+                          activeTab={activeTab}
+                          setActiveTab={setActiveTab}
+                          tabsConfig={TabsConfig} />
+
+                    {isLoading ? <Loader /> : ''}
+                    {!isLoading && data.slug !== "" ? <><Cards isEmptyResult={isEmptyResult} data={data} activeTab={activeTab} /></> : ''}
+                </>
+            : <EmptyConfig />}
+
         </AuthenticatedLayout>
     );
 }
+
+

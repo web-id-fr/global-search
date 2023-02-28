@@ -31,6 +31,12 @@ export default function Authenticated({ auth, header, children }) {
                                     Search
                                 </NavLink>
                             </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex">
+                                <NavLink href={route('settings.edit')} active={route().current('settings.edit')}>
+                                    Settings
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
@@ -100,6 +106,18 @@ export default function Authenticated({ auth, header, children }) {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href={route('search')} active={route().current('search')}>
+                            Search
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href={route('settings.edit')} active={route().current('settings.edit')}>
+                            Settings
                         </ResponsiveNavLink>
                     </div>
 
