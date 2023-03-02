@@ -6,7 +6,7 @@ const RenderResult = ({ data }) => {
     console.log(data.results.items)
     return (
         <>
-            {data.results.items.map((item, index) => (
+            {data?.results?.items?.map((item, index) => (
                 <div key={index} className="mb-6">
                     <a href={url(item.url)} target="_blank" className="block w-100 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                         <div className="flex flex-row items-center">

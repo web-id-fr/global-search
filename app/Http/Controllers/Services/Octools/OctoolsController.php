@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Services\Octools;
 
-use App\ApiServices\Octools\OctoolsApiServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Github\GithubOptionsFormRequest;
 use App\Http\Requests\Github\GithubSearchFormRequest;
+use Octools\Client\Models\Github\Repository;
+use Octools\Client\OctoolsClient;
 
 class OctoolsController extends Controller
 {
     public function __construct(
-        private readonly OctoolsApiServiceInterface $octoolsClient,
+        private readonly OctoolsClient $octoolsClient,
     ) {
     }
 
@@ -34,7 +35,7 @@ class OctoolsController extends Controller
         /** @var array $options */
         $options = $request->validated();
 
-        return $this->octoolsClient->getCompanyRepositories($options);
+        return $this->octoolsClient->github->getCompanyRepositories($options);
     }
 
     public function getCompanyEmployees(GithubOptionsFormRequest $request): array
@@ -42,7 +43,7 @@ class OctoolsController extends Controller
         /** @var array $options */
         $options = $request->validated();
 
-        return $this->octoolsClient->getCompanyEmployees($options);
+        return $this->octoolsClient->github->getCompanyEmployees($options);
     }
 
     public function searchRepositories(GithubSearchFormRequest $request): array
@@ -52,7 +53,7 @@ class OctoolsController extends Controller
         /** @var array $options */
         $options = $request->validated();
 
-        return $this->octoolsClient->searchRepositories($query, $options);
+        return $this->octoolsClient->github->searchRepositories($query, $options);
     }
 
     public function searchIssues(GithubSearchFormRequest $request): array
@@ -62,7 +63,7 @@ class OctoolsController extends Controller
         /** @var array $options */
         $options = $request->validated();
 
-        return $this->octoolsClient->searchIssues($query, $options);
+        return $this->octoolsClient->github->searchIssues($query, $options);
     }
 
     public function searchPullRequests(GithubSearchFormRequest $request): array
@@ -72,29 +73,6 @@ class OctoolsController extends Controller
         /** @var array $options */
         $options = $request->validated();
 
-        return $this->octoolsClient->searchPullRequests($query, $options);
-    }
-
-    public function getRepository(string $repository): array
-    {
-        return $this->octoolsClient->getRepository($repository);
-    }
-
-    public function getIssues(string $repository): array
-    {
-        return $this->octoolsClient->getRepositoryIssues($repository);
-    }
-
-    public function getPullRequests(string $repository): array
-    {
-        return $this->octoolsClient->getRepositoryPullRequests($repository);
-    }
-
-    public function getPullRequestsByMember(string $repository, int $memberId, GithubOptionsFormRequest $request): array
-    {
-        /** @var array $options */
-        $options = $request->validated();
-
-        return $this->octoolsClient->getPullRequestByMember($repository, $memberId, $options);
+        return $this->octoolsClient->github->searchPullRequests($query, $options);
     }
 }

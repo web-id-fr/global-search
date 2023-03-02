@@ -2,8 +2,8 @@
 
 namespace App\ApiServices\Octools;
 
-use Octools\Client\Models\Member\Member;
 use Octools\Client\OctoolsClient;
+use Octools\Client\Models\Member\Member;
 
 class OctoolsApiService implements OctoolsApiServiceInterface
 {
@@ -50,27 +50,5 @@ class OctoolsApiService implements OctoolsApiServiceInterface
     public function searchPullRequests(string $query, array $options = []): array
     {
         return $this->client->github->searchPullRequests($query, $options);
-    }
-
-    public function getRepository(string $repository): array
-    {
-        return $this->client->github->repository($repository)->getRepository();
-    }
-
-    public function getRepositoryIssues(string $repository, array $options = []): array
-    {
-        return $this->client->github->repository($repository)->getIssues($options);
-    }
-
-    public function getRepositoryPullRequests(string $repository, array $options = []): array
-    {
-        return $this->client->github->repository($repository)->getPullRequests($options);
-    }
-
-    public function getPullRequestByMember(string $repository, int $memberId, array $options = []): array
-    {
-        $member = $this->getMemberById($memberId);
-
-        return $this->client->github->repository($repository)->getPullRequestsByMember($member, $options);
     }
 }

@@ -1,20 +1,9 @@
 import { toDayJsDateOnFormat } from "@/helpers/date";
-import StateIconRepository from "@/Components/Icons/StateIconRepository";
-import {url} from "@/helpers/url";
-
-const Tag = (props) => {
-    const { title, styles } = props;
-    return (
-        <div className={`text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-200 text-blue-700 rounded-full ${styles}`}>
-            {title}
-        </div>
-    )
-}
 
 const RenderResult = ({ data }) => {
     return (
         <>
-            {data.results.items.map((item, index) => (
+            {data?.results?.items?.map((item, index) => (
                 <div key={index} className="mb-6">
                     <a href={item.url} target="_blank" className="block w-100 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                         <div className="flex flex-row items-center">
