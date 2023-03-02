@@ -2,5 +2,5 @@
 
 // config for WebId/OctoolsClient
 return [
-    'application_token' => 'YOUR_APPLICATION_TOKEN',
+    'application_token' =>  env('OCTOOLS_CLIENT_APP_TOKEN', ''),
 ];
