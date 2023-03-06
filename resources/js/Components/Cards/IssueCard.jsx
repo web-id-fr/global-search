@@ -1,12 +1,11 @@
-import {toDayJsDateOnFormat} from "@/helpers/date";
+import { toDayJsDateOnFormat } from "@/helpers/date";
 import StateIconIssue from "@/Components/Icons/StateIconIssue";
-import {url} from "@/helpers/url";
-import Label from "@/Components/Label";
+import { url } from "@/helpers/url";
 
 const RenderResult = ({ data }) => {
     return (
         <>
-            {data.results.items.map((item, index) => (
+            {data?.results?.items?.map((item, index) => (
                 <div key={index} className="mb-6">
                     <a href={url(item.url)} target="_blank" className="block w-100 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                         <div className="flex flex-row items-center">

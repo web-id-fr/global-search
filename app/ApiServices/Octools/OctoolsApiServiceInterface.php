@@ -2,8 +2,7 @@
 
 namespace App\ApiServices\Octools;
 
-use WebId\OctoolsClient\Models\Github\Repository;
-use WebId\OctoolsClient\Models\Member\Member;
+use Octools\Client\Models\Member\Member;
 
 interface OctoolsApiServiceInterface
 {
@@ -22,12 +21,4 @@ interface OctoolsApiServiceInterface
     public function searchIssues(string $query, array $options = []): array;
 
     public function searchPullRequests(string $query, array $options = []): array;
-
-    public function getRepository(string $repository): Repository;
-
-    public function getRepositoryIssues(string $repository, array $options = []): array;
-
-    public function getRepositoryPullRequests(string $repository, array $options = []): array;
-
-    public function getPullRequestByMember(string $repository, int $memberId, array $options = []): array;
 }

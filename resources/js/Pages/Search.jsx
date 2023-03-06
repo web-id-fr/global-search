@@ -3,15 +3,15 @@ import SearchComponent from '@/Components/Search';
 import { Head } from '@inertiajs/inertia-react';
 import { usePage } from '@inertiajs/inertia-react';
 import Tabs from "@/Components/Tabs";
-import {fetchEndpoint} from "@/api";
-import {useEffect, useState} from "react";
-import {apiKey} from "@/helpers/constants";
+import { fetchEndpoint } from "@/api";
+import { useEffect, useState } from "react";
+import { apiKey } from "@/helpers/constants";
 import Cards from "@/Components/Cards/Cards";
 import Loader from "@/Components/Loader";
 import EmptyConfig from "@/Components/EmptyConfig";
 
 export default function Search(props) {
-    const {REPOSITORIES, ISSUES, PULL_REQUESTS, SLACK_MESSAGES} = apiKey
+    const { REPOSITORIES, ISSUES, PULL_REQUESTS } = apiKey
 
     const user = usePage().props.auth.user;
 
@@ -31,9 +31,9 @@ export default function Search(props) {
 
     const TabsConfig =
         [
-            {key :REPOSITORIES, value: 'Repositories'},
-            {key :ISSUES, value: 'Issues'},
-            {key :PULL_REQUESTS, value: 'Pull Requests'},
+            { key: REPOSITORIES, value: 'Repositories' },
+            { key: ISSUES, value: 'Issues' },
+            { key: PULL_REQUESTS, value: 'Pull Requests' },
         ]
 
     useEffect(() => {
@@ -44,11 +44,13 @@ export default function Search(props) {
                         setIsLoading(true)
                         const res = await fetchEndpoint(activeTab, data.slug, user.token)
                         await setData({ ...data, results: res.data });
-                        await setIsEmptyResult(() => { return false })
+                        await setIsEmptyResult(false)
                     } catch (e) {
                         setIsEmptyResult(true)
                     }
-                    await setIsLoading(() => { return false })
+                    await setIsLoading(() => {
+                        return false
+                    })
                 };
                 return fetch();
             }, 500);
@@ -61,7 +63,8 @@ export default function Search(props) {
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Search</h2>}
+            header={<h2
+                className="font-semibold text-xl text-gray-800 leading-tight">Search</h2>}
         >
             <Head title="Search" />
 
@@ -75,9 +78,11 @@ export default function Search(props) {
                           tabsConfig={TabsConfig} />
 
                     {isLoading ? <Loader /> : ''}
-                    {!isLoading && data.slug !== "" ? <><Cards isEmptyResult={isEmptyResult} data={data} activeTab={activeTab} /></> : ''}
+                    {!isLoading && data.slug !== "" ?
+                        <Cards isEmptyResult={isEmptyResult} data={data}
+                               activeTab={activeTab} /> : ''}
                 </>
-            : <EmptyConfig />}
+                : <EmptyConfig />}
 
         </AuthenticatedLayout>
     );

@@ -9,7 +9,7 @@ const Cards = ({activeTab, data, isEmptyResult}) => {
     const {REPOSITORIES, ISSUES, PULL_REQUESTS, SLACK_MESSAGES} = apiKey
     return (
         <>
-            {(!isEmptyResult && data.results.items.length !== 0) ?
+            {(!isEmptyResult && data?.results?.items?.length !== 0) ?
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     {activeTab === REPOSITORIES ? (<RepositoryCard data={data} />) : ''}
                     {activeTab === ISSUES ? (<IssueCard data={data} />) : ''}

@@ -32,9 +32,5 @@ Route::prefix('octools')->group(function () {
         Route::get('/search-repositories', [OctoolsController::class, 'searchRepositories']);
         Route::get('/search-issues', [OctoolsController::class, 'searchIssues']);
         Route::get('/search-pull-requests', [OctoolsController::class, 'searchPullRequests']);
-        Route::get('/get-repository/{repository}', [OctoolsController::class, 'getRepository']);
-        Route::get('/get-issues/{repository}', [OctoolsController::class, 'getIssues']);
-        Route::get('/get-pull-requests/{repository}', [OctoolsController::class, 'getPullRequests']);
-        Route::get('/get-pull-request/{repository}/{id}', [OctoolsController::class, 'getPullRequestsByMember']);
     });
 });

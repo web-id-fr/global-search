@@ -1,12 +1,9 @@
-import { toDayJsDateOnFormat } from "@/helpers/date";
-import { lock, unlock } from "../../assets/index";
-
 export default function SlackMessageCard(props)
 {
     const { data } = props
     return (
         <div className='mt-10'>
-            {data.results.map((item, index) => (
+            {data?.results?.items?.map((item, index) => (
                 <div key={index} className="mb-6">
                     <div className="block w-100 p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100">
                         <div className="flex flex-row items-center">
