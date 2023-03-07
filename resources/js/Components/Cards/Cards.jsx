@@ -1,23 +1,38 @@
-import {apiKey} from "@/helpers/constants";
 import RepositoryCard from "@/Components/Cards/RepositoryCard";
-import EmptyResult from "@/Components/Cards/EmptyResult";
 import IssueCard from "@/Components/Cards/IssueCard";
 import PullRequestCard from "@/Components/Cards/PullRequestCard";
-import SlackMessageCard from "@/Components/Cards/SlackMessageCard";
+import EmptyResult from '@/Components/Cards/EmptyResult'
 
-const Cards = ({activeTab, data, isEmptyResult}) => {
-    const {REPOSITORIES, ISSUES, PULL_REQUESTS, SLACK_MESSAGES} = apiKey
+const Cards = ({ repositories, pull_requests, issues }) => {
     return (
-        <>
-            {(!isEmptyResult && data?.results?.items?.length !== 0) ?
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    {activeTab === REPOSITORIES ? (<RepositoryCard data={data} />) : ''}
-                    {activeTab === ISSUES ? (<IssueCard data={data} />) : ''}
-                    {activeTab === PULL_REQUESTS ? (<PullRequestCard data={data} />) : ''}
-                    {activeTab === SLACK_MESSAGES ? (<SlackMessageCard data={data} />) : ''}
-                </div>
-            : <EmptyResult />}
-        </>
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h3 className="text-2xl font-bold tracking-tight text-gray-900">
+                Repositories
+            </h3>
+            {repositories?.items?.length
+                ? repositories?.items?.map((item) => (
+                    <RepositoryCard key={item.url} item={item} />
+                ))
+                : <EmptyResult />}
+
+            <h3 className="text-2xl font-bold tracking-tight text-gray-900">
+                Pull requests
+            </h3>
+            {pull_requests?.items?.length
+                ? pull_requests?.items?.map((item) => (
+                    <PullRequestCard key={item.url} item={item} />
+                ))
+                : <EmptyResult />}
+
+            <h3 className="text-2xl font-bold tracking-tight text-gray-900">
+                Issues
+            </h3>
+            {issues?.items?.length
+                ? issues?.items?.map((item) => (
+                    <IssueCard key={item.url} item={item} />
+                ))
+                : <EmptyResult />}
+        </div>
     )
 }
 
