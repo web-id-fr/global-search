@@ -65,11 +65,13 @@ export default function Search({
             <OmniSearch query={query} setQuery={setQuery} />
             {isLoading && <Loader />}
             {!isLoading && (
-                isEmptyResult
-                    ? <EmptyResult />
-                    : <Cards repositories={repositories}
-                             pull_requests={pull_requests}
-                             issues={issues} />
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    {isEmptyResult
+                        ? <EmptyResult />
+                        : <Cards repositories={repositories}
+                                 pull_requests={pull_requests}
+                                 issues={issues} />}
+                </div>
             )}
         </AuthenticatedLayout>
     );
