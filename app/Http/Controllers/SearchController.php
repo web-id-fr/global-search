@@ -45,7 +45,9 @@ class SearchController extends Controller
             $request = Http::acceptJson();
         }
 
+        /** @var string $apiToken */
         $apiToken = $this->config->get('octools-client.application_token');
+        /** @var string $apiUrl */
         $apiUrl = $this->config->get('octools-client.octools_api_url');
 
         return $request
