@@ -89,4 +89,40 @@ class FakeOctoolsApiService implements OctoolsApiServiceInterface
             'PR 3',
         ];
     }
+
+    public function getRepository(string $repository): array
+    {
+        return [
+            'name' => $repository,
+            'url' => 'https://github.com/web-id-fr/'.$repository,
+            'updatedAt' => '2021-01-01',
+        ];
+    }
+
+    public function getRepositoryIssues(string $repository, array $options = []): array
+    {
+        return [
+            'Issue A',
+            'Issue B',
+            'Issue C',
+        ];
+    }
+
+    public function getRepositoryPullRequests(string $repository, array $options = []): array
+    {
+        return [
+            'PR 1',
+            'PR 2',
+            'PR 3',
+        ];
+    }
+
+    public function getPullRequestByMember(string $repository, int $memberId, array $options = []): array
+    {
+        return [
+            'PR A',
+            'PR B',
+            'PR C',
+        ];
+    }
 }

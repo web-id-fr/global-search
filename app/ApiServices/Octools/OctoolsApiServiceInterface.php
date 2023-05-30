@@ -21,4 +21,12 @@ interface OctoolsApiServiceInterface
     public function searchIssues(string $query, array $options = []): array;
 
     public function searchPullRequests(string $query, array $options = []): array;
+
+    public function getRepository(string $repository): array;
+
+    public function getRepositoryIssues(string $repository, array $options = []): array;
+
+    public function getRepositoryPullRequests(string $repository, array $options = []): array;
+
+    public function getPullRequestByMember(string $repository, int $memberId, array $options = []): array;
 }
