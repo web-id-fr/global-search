@@ -2,9 +2,9 @@
 
 namespace App\ApiServices\Octools;
 
-use WebId\OctoolsClient\Models\Github\Repository;
-use WebId\OctoolsClient\Models\Member\Member;
-use WebId\OctoolsClient\OctoolsClient;
+
+use Octools\Client\OctoolsClient;
+use Octools\Client\Models\Member\Member;
 
 class OctoolsApiService implements OctoolsApiServiceInterface
 {
@@ -53,7 +53,7 @@ class OctoolsApiService implements OctoolsApiServiceInterface
         return $this->client->github->searchPullRequests($query, $options);
     }
 
-    public function getRepository(string $repository): Repository
+    public function getRepository(string $repository): array
     {
         return $this->client->github->repository($repository)->getRepository();
     }

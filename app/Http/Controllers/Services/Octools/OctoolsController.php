@@ -6,7 +6,7 @@ use App\ApiServices\Octools\OctoolsApiServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Github\GithubOptionsFormRequest;
 use App\Http\Requests\Github\GithubSearchFormRequest;
-use WebId\OctoolsClient\Models\Github\Repository;
+use Octools\Client\Models\Github\Repository;
 
 class OctoolsController extends Controller
 {

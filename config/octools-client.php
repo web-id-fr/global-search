@@ -1,6 +1,13 @@
 <?php
 
-// config for WebId/OctoolsClient
 return [
-    'application_token' => 'YOUR_APPLICATION_TOKEN',
+    /**
+     * App token require to call Octools api
+     */
+    'application_token' => env('OCTOOLS_CLIENT_APP_TOKEN', ''),
+
+    /**
+     * Endpoint url, production by default. Change it only for development.
+     */
+    'octools_api_url' => env('OCTOOLS_API_URL', 'https://saas.octools.web-id.ninja/api'),
 ];
