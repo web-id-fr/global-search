@@ -2,9 +2,8 @@
 
 namespace App\ApiServices\Octools;
 
-
-use Octools\Client\OctoolsClient;
 use Octools\Client\Models\Member\Member;
+use Octools\Client\OctoolsClient;
 
 class OctoolsApiService implements OctoolsApiServiceInterface
 {
