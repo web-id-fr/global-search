@@ -2,7 +2,6 @@
 
 namespace App\ApiServices\Octools;
 
-use Octools\Client\Models\Github\Repository;
 use Octools\Client\Models\Member\Member;
 
 interface OctoolsApiServiceInterface

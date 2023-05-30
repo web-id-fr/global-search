@@ -2,8 +2,7 @@
 
 namespace App\ApiServices\Octools;
 
-use WebId\OctoolsClient\Models\Github\Repository;
-use WebId\OctoolsClient\Models\Member\Member;
+use Octools\Client\Models\Member\Member;
 
 class FakeOctoolsApiService implements OctoolsApiServiceInterface
 {
@@ -91,13 +90,13 @@ class FakeOctoolsApiService implements OctoolsApiServiceInterface
         ];
     }
 
-    public function getRepository(string $repository): Repository
+    public function getRepository(string $repository): array
     {
-        return Repository::fromArray([
+        return [
             'name' => $repository,
             'url' => 'https://github.com/web-id-fr/'.$repository,
             'updatedAt' => '2021-01-01',
-        ]);
+        ];
     }
 
     public function getRepositoryIssues(string $repository, array $options = []): array

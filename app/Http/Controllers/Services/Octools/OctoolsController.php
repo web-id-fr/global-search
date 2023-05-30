@@ -6,7 +6,6 @@ use App\ApiServices\Octools\OctoolsApiServiceInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Github\GithubOptionsFormRequest;
 use App\Http\Requests\Github\GithubSearchFormRequest;
-use Octools\Client\Models\Github\Repository;
 
 class OctoolsController extends Controller
 {
@@ -76,7 +75,7 @@ class OctoolsController extends Controller
         return $this->octoolsClient->searchPullRequests($query, $options);
     }
 
-    public function getRepository(string $repository): Repository
+    public function getRepository(string $repository): array
     {
         return $this->octoolsClient->getRepository($repository);
     }

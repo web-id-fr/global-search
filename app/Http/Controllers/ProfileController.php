@@ -15,7 +15,6 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
     public function edit(Request $request)
@@ -29,7 +28,6 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      *
-     * @param  \App\Http\Requests\ProfileUpdateRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileUpdateRequest $request)
@@ -54,7 +52,6 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request)
